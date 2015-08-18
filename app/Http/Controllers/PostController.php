@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -15,8 +16,9 @@ class PostController extends Controller
      * @return Response
      */
     public function index()
-    {
-      return view('post.index');
+    { $posts= Post::all();
+      //  dd($posts);
+      return view('post.index', ['posts'=>$posts]);
     }
 
     /**
