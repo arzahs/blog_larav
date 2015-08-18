@@ -17,17 +17,16 @@ class PostController extends Controller
      * @return Response
      */
     public function index(Post $postModel)
-    { //$posts= Post::all();
-      //  dd($posts);
-       //$posts = Post::latest('published_at')->get();
-
-        /*$posts = Post::latest('published_at')
-            ->where('published_at', '<=', Carbon::now())
-            ->get();*/
-        $posts = $postModel->getPublishedPosts();
+    {
+      $posts = $postModel->getPublishedPosts();
       return view('post.index', ['posts'=>$posts]);
     }
 
+    public function unpublished(Post $postModel)
+    {
+        $posts = $postModel->getUnPublishedPosts();
+        return view('post.index', ['posts'=>$posts]);
+    }
     /**
      * Show the form for creating a new resource.
      *

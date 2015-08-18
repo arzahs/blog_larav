@@ -15,6 +15,6 @@
     return view('welcome');
 });*/
 
-get('/', ['as' => 'post', 'uses' => 'PostController@index']);
-
+get('/', ['as' => 'posts', 'uses' => 'PostController@index']);
+get('/unpublished', ['as' => 'posts.unpublished', 'uses' => 'PostController@index']);
 
