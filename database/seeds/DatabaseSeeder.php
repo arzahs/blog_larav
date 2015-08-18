@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Post;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,7 +16,40 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         // $this->call(UserTableSeeder::class);
-
+        $this->call('PostsSeeder');
         Model::reguard();
+    }
+}
+
+class PostsSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('posts')->delete();
+        Post::create([
+            'title' => 'First Post',
+            'slug' => 'first-post',
+            'excerpt' => '<b>First Post body</b>',
+            'content' => '<b>Content First Post body</b>',
+            'published' => true,
+            'published_at' => DB::raw('CURRENT_TIMESTAMP'),
+        ]);
+
+        Post::create([
+            'title' => 'Second Post',
+            'slug' => 'second-post',
+            'excerpt' => '<b>Second Post body</b>',
+            'content' => '<b>Content Second Post body</b>',
+            'published' => false,
+            'published_at' => DB::raw('CURRENT_TIMESTAMP'),
+        ]);
+        Post::create([
+            'title' => 'Third Post',
+            'slug' => 'third-post',
+            'excerpt' => '<b>Third Post body</b>',
+            'content' => '<b>Content Third Post body</b>',
+            'published' => false,
+            'published_at' => DB::raw('CURRENT_TIMESTAMP'),
+        ]);
     }
 }
