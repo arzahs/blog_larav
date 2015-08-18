@@ -18,8 +18,8 @@ class Post extends Model
     }
 
     public function scopeUnPublished($query){
-        $query->where('published_at', '=>', Carbon::now())
-            ->orWhere('published', '=', 0);
+        $query->where('published_at', '>', Carbon::now())
+            ->orwhere('published', '=', 0);
     }
     public function getUnPublishedPosts(){
         return $this->latest('published_at')->unPublished()->get();
