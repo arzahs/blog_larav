@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -15,9 +16,15 @@ class PostController extends Controller
      *
      * @return Response
      */
-    public function index()
-    { $posts= Post::all();
+    public function index(Post $postModel)
+    { //$posts= Post::all();
       //  dd($posts);
+       //$posts = Post::latest('published_at')->get();
+
+        /*$posts = Post::latest('published_at')
+            ->where('published_at', '<=', Carbon::now())
+            ->get();*/
+        $posts = $postModel->getPublishedPosts();
       return view('post.index', ['posts'=>$posts]);
     }
 
