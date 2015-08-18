@@ -16,5 +16,5 @@
 });*/
 
 get('/', ['as' => 'posts', 'uses' => 'PostController@index']);
-get('/unpublished', ['as' => 'posts.unpublished', 'uses' => 'PostController@index']);
+get('/unpublished', ['as' => 'posts.unpublished', 'uses' => 'PostController@unpublished']);
 
