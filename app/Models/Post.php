@@ -7,6 +7,8 @@ use Carbon\Carbon;
 
 class Post extends Model
 {
+    protected $fillable = ['slug', 'title', 'excerpt', 'content', 'published', 'published_at'];
+    public $timestamps = true;
     public function getPublishedPosts(){
         $posts = $this->latest('published_at')->published()->get();
         return $posts;

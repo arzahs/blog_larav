@@ -43,9 +43,10 @@ class PostController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Post $postModel, Request $request)
     {
-        //
+        $postModel->create($request->all());
+        return redirect()->route('posts');
     }
 
     /**
